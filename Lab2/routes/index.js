@@ -5,6 +5,7 @@ var router = express.Router();
 /* GET home page. */
 router.get('/', function (req, res)
 {
+    var answer = "";
 
     function calculate(method, x, y)
     {
@@ -13,23 +14,28 @@ router.get('/', function (req, res)
 
         if (method === "add")
         {
-            console.log(x + " + " + y + " = " + (firstNumber + secondNumber));
+            answer += "The calculation is " + x + " + " + y + " = " + (firstNumber + secondNumber);
+            console.log(answer);
         }
         else if (method === "subtract")
         {
-            console.log(x + " - " + y + " = " + (firstNumber - secondNumber));
+            answer += "The calculation is " + x + " - " + y + " = " + (firstNumber - secondNumber);
+            console.log(answer);
         }
         else if (method === "multiply")
         {
-            console.log(x + " x " + y + " = " + (firstNumber * secondNumber));
+            answer += "The calculation is " + x + " x " + y + " = " + (firstNumber * secondNumber);
+            console.log(answer);
         }
         else if (method === "divide")
         {
-            console.log(x + " / " + y + " = " + (firstNumber / secondNumber));
+            answer += "The calculation is " + x + " / " + y + " = " + (firstNumber / secondNumber);
+            console.log(answer);
         }
         else
         {
-            console.log("ERROR! :( You must enter either \"add\", \"subtract\", \"multiply\" or \"divide\" for the method.");
+            answer = "ERROR! :( You must enter either \"add\", \"subtract\", \"multiply\" or \"divide\" for the method.";
+            console.log(answer);
         }
     }
 
@@ -38,7 +44,7 @@ router.get('/', function (req, res)
         calculate(req.query.method, req.query.x, req.query.y);
     }
 
-    res.render('index', { title: 'Calculator' });
+    res.render('index', { title: 'Calculator', calculate: answer });
 });
 
 module.exports = router;
